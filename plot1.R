@@ -1,0 +1,7 @@
+data <- read.table("power.txt", header=TRUE, sep=";", stringsAsFactors=FALSE)
+data[,1] <- as.Date(data[,1],format = "%d/%m/%Y")
+subdata <- subset(data, Date == as.Date("2007-02-01") | Date==as.Date("2007-02-02"))
+gap <- as.numeric(subdata$Global_active_power)
+png("plot1.png", width=480, height=480)
+hist(gap, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
+dev.off()
